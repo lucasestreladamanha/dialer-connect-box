@@ -14,7 +14,107 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contacts: {
+        Row: {
+          cpf: string | null
+          created_at: string
+          id: string
+          name: string | null
+          phone_normalized: string | null
+          phone_original: string | null
+          upload_id: string | null
+          user_id: string
+          valid_whatsapp: boolean | null
+          validated_at: string | null
+        }
+        Insert: {
+          cpf?: string | null
+          created_at?: string
+          id?: string
+          name?: string | null
+          phone_normalized?: string | null
+          phone_original?: string | null
+          upload_id?: string | null
+          user_id: string
+          valid_whatsapp?: boolean | null
+          validated_at?: string | null
+        }
+        Update: {
+          cpf?: string | null
+          created_at?: string
+          id?: string
+          name?: string | null
+          phone_normalized?: string | null
+          phone_original?: string | null
+          upload_id?: string | null
+          user_id?: string
+          valid_whatsapp?: boolean | null
+          validated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contacts_upload_id_fkey"
+            columns: ["upload_id"]
+            isOneToOne: false
+            referencedRelation: "uploads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      uploads: {
+        Row: {
+          created_at: string
+          file_name: string
+          id: string
+          total_contacts: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          file_name: string
+          id?: string
+          total_contacts?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          file_name?: string
+          id?: string
+          total_contacts?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      whatsapp_sessions: {
+        Row: {
+          created_at: string
+          id: string
+          instance_name: string
+          phone: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          instance_name: string
+          phone?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          instance_name?: string
+          phone?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
